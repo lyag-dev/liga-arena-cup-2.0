@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Acessar Conta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="login-container">
+
+    <form (ngSubmit)="fazerLogin()">
+      <ion-item lines="full">
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="full">
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" [(ngModel)]="senha" name="senha" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" class="ion-margin-top">
+        Entrar
+      </ion-button>
+    </form>
+
+    <div class="divider">
+      <span>ou</span>
+    </div>
+
+   <ion-button expand="block" color="light" (click)="fazerLoginGoogle()">
+  <ion-icon [icon]="logoGoogle" slot="start"></ion-icon>
+  Entrar com Google
+</ion-button>
+
+  </div>
+</ion-content>

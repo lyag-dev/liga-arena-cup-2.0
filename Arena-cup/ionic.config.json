@@ -1,0 +1,7 @@
+{
+  "name": "Arena-cup",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
