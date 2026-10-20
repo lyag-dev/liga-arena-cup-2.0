@@ -1,0 +1,2242 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+Arena-cup/
+  .vscode/
+    extensions.json
+    settings.json
+  src/
+    app/
+      core/
+        services/
+          auth.service.ts
+      pages/
+        home/
+          home.page.html
+          home.page.scss
+          home.page.spec.ts
+          home.page.ts
+        login/
+          login.page.html
+          login.page.scss
+          login.page.ts
+        register/
+          register.page.html
+          register.page.scss
+          register.page.ts
+      shared/
+        theme/
+          auth-shared.scss
+      app.component.html
+      app.component.scss
+      app.component.spec.ts
+      app.component.ts
+      app.config.ts
+      app.routes.ts
+    assets/
+      icon/
+        favicon.png
+      shapes.svg
+    environments/
+      environment.prod.ts
+      environment.ts
+    theme/
+      variables.scss
+    global.scss
+    index.html
+    main.ts
+    test-setup.ts
+  .browserslistrc
+  .editorconfig
+  .gitignore
+  angular.json
+  capacitor.config.ts
+  eslint.config.js
+  ionic.config.json
+  package.json
+  repomix-output.xml
+  tsconfig.app.json
+  tsconfig.json
+  tsconfig.spec.json
+INICIO.md
+MISSAO.md
+package.json
+prints.css
+PRINTS.html
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="Arena-cup/src/app/core/services/auth.service.ts">
+import { Injectable, inject } from '@angular/core';
+import {
+  Auth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut
+} from '@angular/fire/auth';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  private auth = inject(Auth);
+
+  // Login com E-mail e Senha
+  async login(email: string, pass: string) {
+    return await signInWithEmailAndPassword(this.auth, email, pass);
+  }
+
+  // Cadastro com E-mail e Senha
+  async register(email: string, pass: string) {
+    return await createUserWithEmailAndPassword(this.auth, email, pass);
+  }
+
+  // Login / Cadastro com Google
+  async loginWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    return await signInWithPopup(this.auth, provider);
+  }
+
+  // Logout
+  async logout() {
+    return await signOut(this.auth);
+  }
+}
+</file>
+
+<file path="Arena-cup/src/app/pages/home/home.page.html">
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content>
+</file>
+
+<file path="Arena-cup/src/app/pages/home/home.page.scss">
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+</file>
+
+<file path="Arena-cup/src/app/pages/home/home.page.spec.ts">
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { HomePage } from './home.page';
+
+describe('HomePage', () => {
+  let component: HomePage;
+  let fixture: ComponentFixture<HomePage>;
+
+  beforeEach(async () => {
+    fixture = TestBed.createComponent(HomePage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+</file>
+
+<file path="Arena-cup/src/app/pages/home/home.page.ts">
+import { Component } from '@angular/core';
+import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+})
+export class HomePage {
+  constructor() {}
+}
+</file>
+
+<file path="Arena-cup/src/app/pages/login/login.page.html">
+<ion-content class="auth-content" [fullscreen]="true">
+  <div class="auth-container">
+
+    <div class="auth-header">
+      <h1>Bem-vindo!</h1>
+      <p>Acesse sua conta para continuar</p>
+    </div>
+
+    <div class="auth-form">
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="email" type="email" label="E-mail" labelPlacement="stacked" placeholder="seu@email.com"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="password" type="password" label="Senha" labelPlacement="stacked" placeholder="Sua senha"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="auth-actions">
+      <ion-button expand="block" (click)="onLogin()">Entrar</ion-button>
+
+      <div class="auth-divider">ou</div>
+
+      <ion-button expand="block" class="btn-google" (click)="onGoogleLogin()">
+        <ion-icon name="logo-google" slot="start"></ion-icon>
+        Continuar com Google
+      </ion-button>
+    </div>
+
+    <div class="auth-footer">
+      Não tem uma conta? <a routerLink="/register">Cadastre-se</a>
+    </div>
+
+  </div>
+</ion-content>
+</file>
+
+<file path="Arena-cup/src/app/pages/login/login.page.scss">
+@import '../../shared/theme/auth-shared';
+</file>
+
+<file path="Arena-cup/src/app/pages/login/login.page.ts">
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import {
+  IonContent, IonItem, IonInput, IonButton, IonIcon
+} from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { logoGoogle } from 'ionicons/icons';
+import { AuthService } from '../../core/services/auth.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    IonContent,
+    IonItem,
+    IonInput,
+    IonButton,
+    IonIcon
+  ]
+})
+export class LoginPage {
+  email = '';
+  password = '';
+
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private loadingCtrl = inject(LoadingController);
+  private toastCtrl = inject(ToastController);
+
+  constructor() {
+    addIcons({ logoGoogle });
+  }
+
+  async onLogin() {
+    if (!this.email || !this.password) {
+      return this.showToast('Preencha todos os campos!');
+    }
+
+    const loading = await this.loadingCtrl.create({ message: 'Entrando...' });
+    await loading.present();
+
+    try {
+      await this.authService.login(this.email, this.password);
+      await loading.dismiss();
+      this.router.navigateByUrl('/home', { replaceUrl: true });
+    } catch (error: any) {
+      await loading.dismiss();
+      this.showToast(error.message || 'Erro ao realizar login.');
+    }
+  }
+
+  async onGoogleLogin() {
+    try {
+      await this.authService.loginWithGoogle();
+      this.router.navigateByUrl('/home', { replaceUrl: true });
+    } catch (error: any) {
+      this.showToast(error.message || 'Erro no login com Google.');
+    }
+  }
+
+  private async showToast(message: string) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 3000,
+      color: 'danger',
+      position: 'bottom'
+    });
+    toast.present();
+  }
+}
+</file>
+
+<file path="Arena-cup/src/app/pages/register/register.page.html">
+<ion-content class="auth-content" [fullscreen]="true">
+  <div class="auth-container">
+
+    <div class="auth-header">
+      <h1>Crie sua conta</h1>
+      <p>Preencha os dados para começar</p>
+    </div>
+
+    <div class="auth-form">
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="email" type="email" label="E-mail" labelPlacement="stacked" placeholder="seu@email.com"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="password" type="password" label="Senha" labelPlacement="stacked" placeholder="Mínimo de 6 caracteres"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="auth-actions">
+      <ion-button expand="block" (click)="onRegister()">Cadastrar</ion-button>
+
+      <div class="auth-divider">ou</div>
+
+      <ion-button expand="block" class="btn-google" (click)="onGoogleLogin()">
+        <ion-icon name="logo-google" slot="start"></ion-icon>
+        Cadastrar com Google
+      </ion-button>
+    </div>
+
+    <div class="auth-footer">
+      Já possui uma conta? <a routerLink="/login">Faça login</a>
+    </div>
+
+  </div>
+</ion-content>
+</file>
+
+<file path="Arena-cup/src/app/pages/register/register.page.scss">
+@import '../../shared/theme/auth-shared';
+</file>
+
+<file path="Arena-cup/src/app/pages/register/register.page.ts">
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import {
+  IonContent, IonItem, IonInput, IonButton, IonIcon,
+  LoadingController, ToastController
+} from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { logoGoogle } from 'ionicons/icons';
+import { AuthService } from '../../core/services/auth.service';
+
+@Component({
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink,
+    IonContent,
+    IonItem,
+    IonInput,
+    IonButton,
+    IonIcon
+  ]
+})
+export class RegisterPage {
+  email = '';
+  password = '';
+
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private loadingCtrl = inject(LoadingController);
+  private toastCtrl = inject(ToastController);
+
+  constructor() {
+    addIcons({ logoGoogle });
+  }
+
+  async onRegister() {
+    if (!this.email || !this.password) {
+      return this.showToast('Preencha todos os campos!');
+    }
+
+    const loading = await this.loadingCtrl.create({ message: 'Criando conta...' });
+    await loading.present();
+
+    try {
+      await this.authService.register(this.email, this.password);
+      await loading.dismiss();
+      this.router.navigateByUrl('/home', { replaceUrl: true });
+    } catch (error: any) {
+      await loading.dismiss();
+      this.showToast(error.message || 'Erro ao realizar cadastro.');
+    }
+  }
+
+  async onGoogleLogin() {
+    try {
+      await this.authService.loginWithGoogle();
+      this.router.navigateByUrl('/home', { replaceUrl: true });
+    } catch (error: any) {
+      this.showToast(error.message || 'Erro no cadastro com Google.');
+    }
+  }
+
+  private async showToast(message: string) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 3000,
+      color: 'danger',
+      position: 'bottom'
+    });
+    toast.present();
+  }
+}
+</file>
+
+<file path="Arena-cup/src/app/shared/theme/auth-shared.scss">
+$auth-padding: 24px;
+$auth-border-radius: 12px;
+$auth-transition: all 0.3s ease;
+
+.auth-content {
+  --background: var(--ion-background-color, #f4f5f8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-container {
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  padding: $auth-padding;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+
+  /* Cabeçalho (Título e Subtítulo) */
+  .auth-header {
+    text-align: center;
+    margin-bottom: 32px;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ion-text-color, #222);
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--ion-color-medium, #666);
+    }
+  }
+
+  /* Campos do Formulário */
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+
+    ion-item {
+      --border-radius: #{$auth-border-radius};
+      --background: var(--ion-item-background, #fff);
+      --padding-start: 16px;
+      --padding-end: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border-radius: $auth-border-radius;
+      transition: $auth-transition;
+
+      &:focus-within {
+        box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb, 56, 128, 255), 0.2);
+      }
+    }
+  }
+
+  /* Botões de Ação */
+  .auth-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    ion-button {
+      --border-radius: #{$auth-border-radius};
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: none;
+      height: 48px;
+    }
+
+    .btn-google {
+      --background: #ffffff;
+      --color: #333333;
+      --border-color: #e0e0e0;
+      --border-width: 1px;
+      --border-style: solid;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+      ion-icon {
+        margin-right: 8px;
+        color: #db4437; /* Cor oficial do Google */
+      }
+    }
+  }
+
+  /* Divisor "OU" */
+  .auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 16px 0;
+    color: var(--ion-color-medium, #888);
+    font-size: 13px;
+
+    &::before, &::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--ion-color-step-200, #e0e0e0);
+    }
+
+    &::before { margin-right: .75em; }
+    &::after { margin-left: .75em; }
+  }
+
+  /* Link para alternar entre Login e Cadastro */
+  .auth-footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--ion-color-medium, #666);
+
+    a {
+      color: var(--ion-color-primary, #3880ff);
+      text-decoration: none;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+</file>
+
+<file path="Arena-cup/src/app/app.config.ts">
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter, RouteReuseStrategy, withPreloading, PreloadAllModules, withComponentInputBinding } from '@angular/router';
+import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular';
+import { routes } from './app.routes';
+import { environment } from '../environments/environment';
+
+// Importações do Firebase para Standalone
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    provideIonicAngular(),
+    provideRouter(routes, withPreloading(PreloadAllModules), withComponentInputBinding()),
+
+    // Inicialização correta do Firebase e Auth
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth())
+  ]
+};
+</file>
+
+<file path="Arena-cup/repomix-output.xml">
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+src/
+  app/
+    home/
+      home.page.html
+      home.page.scss
+      home.page.spec.ts
+      home.page.ts
+    app.component.html
+    app.component.scss
+    app.component.spec.ts
+    app.component.ts
+    app.config.ts
+    app.routes.ts
+  assets/
+    icon/
+      favicon.png
+    shapes.svg
+  environments/
+    environment.prod.ts
+    environment.ts
+  theme/
+    variables.scss
+  global.scss
+  index.html
+  main.ts
+  test-setup.ts
+.browserslistrc
+.editorconfig
+.gitignore
+angular.json
+capacitor.config.ts
+eslint.config.js
+ionic.config.json
+package.json
+tsconfig.app.json
+tsconfig.json
+tsconfig.spec.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="src/app/home/home.page.html">
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content>
+</file>
+
+<file path="src/app/home/home.page.scss">
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+</file>
+
+<file path="src/app/home/home.page.spec.ts">
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { HomePage } from './home.page';
+
+describe('HomePage', () => {
+  let component: HomePage;
+  let fixture: ComponentFixture<HomePage>;
+
+  beforeEach(async () => {
+    fixture = TestBed.createComponent(HomePage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+</file>
+
+<file path="src/app/home/home.page.ts">
+import { Component } from '@angular/core';
+import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+})
+export class HomePage {
+  constructor() {}
+}
+</file>
+
+<file path="src/app/app.component.html">
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>
+</file>
+
+<file path="src/app/app.component.scss">
+
+</file>
+
+<file path="src/app/app.component.spec.ts">
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () => {
+  it('should create the app', async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent],
+      providers: [provideRouter([])]
+    }).compileComponents();
+    
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+});
+</file>
+
+<file path="src/app/app.component.ts">
+import { Component } from '@angular/core';
+import { IonApp, IonRouterOutlet } from '@ionic/angular';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  imports: [IonApp, IonRouterOutlet],
+})
+export class AppComponent {
+  constructor() {}
+}
+</file>
+
+<file path="src/app/app.config.ts">
+import { environment } from '../environments/environment';
+
+provideFirebaseApp(() => initializeApp(environment.firebase))
+</file>
+
+<file path="src/app/app.routes.ts">
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  {
+    path: 'home',
+    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+];
+</file>
+
+<file path="src/assets/shapes.svg">
+<svg width="350" height="140" xmlns="http://www.w3.org/2000/svg" style="background:#f6f7f9"><g fill="none" fill-rule="evenodd"><path fill="#F04141" style="mix-blend-mode:multiply" d="M61.905-34.23l96.194 54.51-66.982 54.512L22 34.887z"/><circle fill="#10DC60" style="mix-blend-mode:multiply" cx="155.5" cy="135.5" r="57.5"/><path fill="#3880FF" style="mix-blend-mode:multiply" d="M208.538 9.513l84.417 15.392L223.93 93.93z"/><path fill="#FFCE00" style="mix-blend-mode:multiply" d="M268.625 106.557l46.332-26.75 46.332 26.75v53.5l-46.332 26.75-46.332-26.75z"/><circle fill="#7044FF" style="mix-blend-mode:multiply" cx="299.5" cy="9.5" r="38.5"/><rect fill="#11D3EA" style="mix-blend-mode:multiply" transform="rotate(-60 148.47 37.886)" x="143.372" y="-7.056" width="10.196" height="89.884" rx="5.098"/><path d="M-25.389 74.253l84.86 8.107c5.498.525 9.53 5.407 9.004 10.905a10 10 0 0 1-.057.477l-12.36 85.671a10.002 10.002 0 0 1-11.634 8.42l-86.351-15.226c-5.44-.959-9.07-6.145-8.112-11.584l13.851-78.551a10 10 0 0 1 10.799-8.219z" fill="#7044FF" style="mix-blend-mode:multiply"/><circle fill="#0CD1E8" style="mix-blend-mode:multiply" cx="273.5" cy="106.5" r="20.5"/></g></svg>
+</file>
+
+<file path="src/environments/environment.prod.ts">
+export const environment = {
+  production: true
+};
+</file>
+
+<file path="src/environments/environment.ts">
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyDjaFrTGKOMgg-tTjNXYtBppQzMeM68Cz4",
+    authDomain: "arena-cup-5e71b.firebaseapp.com",
+    projectId: "arena-cup-5e71b",
+    storageBucket: "arena-cup-5e71b.firebasestorage.app",
+    messagingSenderId: "787337914605",
+    appId: "1:787337914605:web:b62a65db57a4731beb44e4"
+  }
+};
+</file>
+
+<file path="src/theme/variables.scss">
+// For information on how to create your own theme, please refer to:
+// https://ionicframework.com/docs/theming/
+</file>
+
+<file path="src/global.scss">
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
+</file>
+
+<file path="src/index.html">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Ionic App</title>
+
+  <base href="/" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+
+  <!-- add to homescreen for ios -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
+</html>
+</file>
+
+<file path="src/main.ts">
+import { bootstrapApplication } from '@angular/platform-browser';
+import { RouteReuseStrategy, provideRouter, withComponentInputBinding, withPreloading, PreloadAllModules } from '@angular/router';
+import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular';
+
+import { routes } from './app/app.routes';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    provideIonicAngular(),
+    provideRouter(routes, withPreloading(PreloadAllModules), withComponentInputBinding()),
+  ],
+});
+</file>
+
+<file path="src/test-setup.ts">
+// Polyfills for running unit tests under jsdom (the default Vitest environment).
+// Ionic components such as ion-menu and ion-split-pane query `window.matchMedia`,
+// which jsdom does not implement.
+if (!window.matchMedia) {
+  window.matchMedia = (query: string): MediaQueryList =>
+    ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => undefined,
+      removeListener: () => undefined,
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+      dispatchEvent: () => false,
+    }) as MediaQueryList;
+}
+</file>
+
+<file path=".browserslistrc">
+# This file is used by the build system to adjust CSS and JS output to support the specified browsers below.
+# For additional information regarding the format and rule options, please see:
+# https://github.com/browserslist/browserslist#queries
+
+# For the full list of supported browsers by the Angular framework, please see:
+# https://angular.dev/reference/versions#browser-support
+
+# You can see what browsers were selected by your queries by running:
+#   npx browserslist
+
+Chrome >=107
+Firefox >=106
+Edge >=107
+Safari >=16.1
+iOS >=16.1
+</file>
+
+<file path=".editorconfig">
+# Editor configuration, see https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.ts]
+quote_type = single
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+</file>
+
+<file path=".gitignore">
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+*~
+*.sw[mnpcod]
+.tmp
+*.tmp
+*.tmp.*
+UserInterfaceState.xcuserstate
+$RECYCLE.BIN/
+
+*.log
+log.txt
+
+
+/.sourcemaps
+/.versions
+/coverage
+
+# Ionic
+/.ionic
+/www
+/platforms
+/plugins
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+
+# Miscellaneous
+/.angular
+/.angular/cache
+.sass-cache/
+/.nx
+/.nx/cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+</file>
+
+<file path="angular.json">
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "app": {
+      "projectType": "application",
+      "schematics": {
+        "@ionic/angular-toolkit:page": {
+          "styleext": "scss",
+          "standalone": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "outputPath": {
+              "base": "www",
+              "browser": ""
+            },
+            "index": "src/index.html",
+            "polyfills": [],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
+              }
+            ],
+            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "scripts": [],
+            "browser": "src/main.ts"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "ci": {
+              "progress": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "app:build:production"
+            },
+            "development": {
+              "buildTarget": "app:build:development"
+            },
+            "ci": {
+              "progress": false
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n",
+          "options": {
+            "buildTarget": "app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "buildTarget": "::development",
+            "setupFiles": ["src/test-setup.ts"]
+          },
+          "configurations": {
+            "ci": {
+              "watch": false
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "schematicCollections": ["@ionic/angular-toolkit"]
+  },
+  "schematics": {
+    "@ionic/angular-toolkit:component": {
+      "styleext": "scss",
+      "standalone": true
+    },
+    "@ionic/angular-toolkit:page": {
+      "styleext": "scss",
+      "standalone": true
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
+  }
+}
+</file>
+
+<file path="capacitor.config.ts">
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'io.ionic.starter',
+  appName: 'Arena-cup',
+  webDir: 'www'
+};
+
+export default config;
+</file>
+
+<file path="eslint.config.js">
+// @ts-check
+const tseslint = require("typescript-eslint");
+const angular = require("angular-eslint");
+
+module.exports = tseslint.config(
+  {
+    files: ["**/*.ts"],
+    ignores: ["projects/**/*"],
+    extends: [...angular.configs.tsRecommended],
+    processor: angular.processInlineTemplates,
+    rules: {
+      "@angular-eslint/component-class-suffix": [
+        "error",
+        { suffixes: ["Page", "Component"] },
+      ],
+      "@angular-eslint/component-selector": [
+        "error",
+        { type: "element", prefix: "app", style: "kebab-case" },
+      ],
+      "@angular-eslint/directive-selector": [
+        "error",
+        { type: "attribute", prefix: "app", style: "camelCase" },
+      ],
+    },
+  },
+  {
+    files: ["**/*.html"],
+    extends: [...angular.configs.templateRecommended],
+    rules: {},
+  }
+);
+</file>
+
+<file path="ionic.config.json">
+{
+  "name": "Arena-cup",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "Arena-cup",
+  "version": "0.0.1",
+  "author": "Ionic Framework",
+  "homepage": "https://ionicframework.com/",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "22.1.7",
+    "@angular/compiler": "22.1.7",
+    "@angular/core": "22.1.7",
+    "@angular/forms": "22.1.7",
+    "@angular/platform-browser": "22.1.7",
+    "@angular/router": "22.1.7",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/haptics": "8.0.2",
+    "@capacitor/keyboard": "8.0.6",
+    "@capacitor/status-bar": "8.0.4",
+    "@ionic/angular": "^9.0.0",
+    "firebase": "^13.0.0",
+    "firebase-tools": "^15.33.0",
+    "ionicons": "^8.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "22.1.8",
+    "@angular/cli": "22.1.8",
+    "@angular/compiler-cli": "22.1.7",
+    "@angular/language-service": "22.1.7",
+    "@capacitor/cli": "8.5.3",
+    "@ionic/angular-toolkit": "^13.0.0",
+    "angular-eslint": "22.5.0",
+    "eslint": "^10.10.0",
+    "jsdom": "^30.1.1",
+    "typescript": "~6.0.0",
+    "typescript-eslint": "^8.61.0",
+    "vitest": "~4.0.18"
+  },
+  "description": "An Ionic project"
+}
+</file>
+
+<file path="tsconfig.app.json">
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "files": [
+    "src/main.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}
+</file>
+
+<file path="tsconfig.json">
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "es2020",
+    "lib": ["es2022", "dom"],
+    "skipLibCheck": true,
+    "useDefineForClassFields": false
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}
+</file>
+
+<file path="tsconfig.spec.json">
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "types": [
+      "vitest/globals"
+    ]
+  },
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts",
+    "src/test-setup.ts"
+  ]
+}
+</file>
+
+</files>
+</file>
+
+<file path="package.json">
+{
+  "dependencies": {
+    "@angular/fire": "^20.1.1",
+    "firebase": "^11.10.0"
+  }
+}
+</file>
+
+<file path="Arena-cup/.vscode/extensions.json">
+{
+    "recommendations": [
+       "Webnative.webnative"
+    ]
+}
+</file>
+
+<file path="Arena-cup/.vscode/settings.json">
+{
+  // Keeps VS Code from suggesting Ionic components off the entry points this app
+  // does not use. Patterns are matched against resolved .d.ts paths, not import
+  // specifiers, so they name @ionic/angular's actual type files. Never use a bare
+  // "@ionic/angular" here: it matches the whole package and blocks every Ionic
+  // auto-import (ionic-team/starters#1873).
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@ionic/angular/types/ionic-angular-lazy.d.ts",
+    "@ionic/angular/types/ionic-angular-common.d.ts"
+  ]
+}
+</file>
+
+<file path="Arena-cup/src/app/app.component.html">
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>
+</file>
+
+<file path="Arena-cup/src/app/app.component.scss">
+
+</file>
+
+<file path="Arena-cup/src/app/app.component.spec.ts">
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () => {
+  it('should create the app', async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent],
+      providers: [provideRouter([])]
+    }).compileComponents();
+    
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+});
+</file>
+
+<file path="Arena-cup/src/app/app.component.ts">
+import { Component } from '@angular/core';
+import { IonApp, IonRouterOutlet } from '@ionic/angular';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  imports: [IonApp, IonRouterOutlet],
+})
+export class AppComponent {
+  constructor() {}
+}
+</file>
+
+<file path="Arena-cup/src/app/app.routes.ts">
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage),
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.page').then(m => m.RegisterPage),
+  },
+  {
+    path: 'home',
+    loadComponent: () => import('./pages/home/home.page').then(m => m.HomePage),
+  },
+];
+</file>
+
+<file path="Arena-cup/src/assets/shapes.svg">
+<svg width="350" height="140" xmlns="http://www.w3.org/2000/svg" style="background:#f6f7f9"><g fill="none" fill-rule="evenodd"><path fill="#F04141" style="mix-blend-mode:multiply" d="M61.905-34.23l96.194 54.51-66.982 54.512L22 34.887z"/><circle fill="#10DC60" style="mix-blend-mode:multiply" cx="155.5" cy="135.5" r="57.5"/><path fill="#3880FF" style="mix-blend-mode:multiply" d="M208.538 9.513l84.417 15.392L223.93 93.93z"/><path fill="#FFCE00" style="mix-blend-mode:multiply" d="M268.625 106.557l46.332-26.75 46.332 26.75v53.5l-46.332 26.75-46.332-26.75z"/><circle fill="#7044FF" style="mix-blend-mode:multiply" cx="299.5" cy="9.5" r="38.5"/><rect fill="#11D3EA" style="mix-blend-mode:multiply" transform="rotate(-60 148.47 37.886)" x="143.372" y="-7.056" width="10.196" height="89.884" rx="5.098"/><path d="M-25.389 74.253l84.86 8.107c5.498.525 9.53 5.407 9.004 10.905a10 10 0 0 1-.057.477l-12.36 85.671a10.002 10.002 0 0 1-11.634 8.42l-86.351-15.226c-5.44-.959-9.07-6.145-8.112-11.584l13.851-78.551a10 10 0 0 1 10.799-8.219z" fill="#7044FF" style="mix-blend-mode:multiply"/><circle fill="#0CD1E8" style="mix-blend-mode:multiply" cx="273.5" cy="106.5" r="20.5"/></g></svg>
+</file>
+
+<file path="Arena-cup/src/environments/environment.prod.ts">
+export const environment = {
+  production: true
+};
+</file>
+
+<file path="Arena-cup/src/environments/environment.ts">
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyDjaFrTGKOMgg-tTjNXYtBppQzMeM68Cz4",
+    authDomain: "arena-cup-5e71b.firebaseapp.com",
+    projectId: "arena-cup-5e71b",
+    storageBucket: "arena-cup-5e71b.firebasestorage.app",
+    messagingSenderId: "787337914605",
+    appId: "1:787337914605:web:b62a65db57a4731beb44e4"
+  }
+};
+</file>
+
+<file path="Arena-cup/src/theme/variables.scss">
+// For information on how to create your own theme, please refer to:
+// https://ionicframework.com/docs/theming/
+</file>
+
+<file path="Arena-cup/src/global.scss">
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
+</file>
+
+<file path="Arena-cup/src/index.html">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Ionic App</title>
+
+  <base href="/" />
+
+  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+
+  <!-- add to homescreen for ios -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+</head>
+
+<body>
+  <app-root></app-root>
+</body>
+
+</html>
+</file>
+
+<file path="Arena-cup/src/main.ts">
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
+
+bootstrapApplication(AppComponent, appConfig)
+  .catch((err) => console.error(err));
+</file>
+
+<file path="Arena-cup/src/test-setup.ts">
+// Polyfills for running unit tests under jsdom (the default Vitest environment).
+// Ionic components such as ion-menu and ion-split-pane query `window.matchMedia`,
+// which jsdom does not implement.
+if (!window.matchMedia) {
+  window.matchMedia = (query: string): MediaQueryList =>
+    ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => undefined,
+      removeListener: () => undefined,
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+      dispatchEvent: () => false,
+    }) as MediaQueryList;
+}
+</file>
+
+<file path="Arena-cup/.browserslistrc">
+# This file is used by the build system to adjust CSS and JS output to support the specified browsers below.
+# For additional information regarding the format and rule options, please see:
+# https://github.com/browserslist/browserslist#queries
+
+# For the full list of supported browsers by the Angular framework, please see:
+# https://angular.dev/reference/versions#browser-support
+
+# You can see what browsers were selected by your queries by running:
+#   npx browserslist
+
+Chrome >=107
+Firefox >=106
+Edge >=107
+Safari >=16.1
+iOS >=16.1
+</file>
+
+<file path="Arena-cup/.editorconfig">
+# Editor configuration, see https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.ts]
+quote_type = single
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+</file>
+
+<file path="Arena-cup/.gitignore">
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+*~
+*.sw[mnpcod]
+.tmp
+*.tmp
+*.tmp.*
+UserInterfaceState.xcuserstate
+$RECYCLE.BIN/
+
+*.log
+log.txt
+
+
+/.sourcemaps
+/.versions
+/coverage
+
+# Ionic
+/.ionic
+/www
+/platforms
+/plugins
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+
+# Miscellaneous
+/.angular
+/.angular/cache
+.sass-cache/
+/.nx
+/.nx/cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+</file>
+
+<file path="Arena-cup/angular.json">
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "app": {
+      "projectType": "application",
+      "schematics": {
+        "@ionic/angular-toolkit:page": {
+          "styleext": "scss",
+          "standalone": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "outputPath": {
+              "base": "www",
+              "browser": ""
+            },
+            "index": "src/index.html",
+            "polyfills": [],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets"
+              }
+            ],
+            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "scripts": [],
+            "browser": "src/main.ts"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "ci": {
+              "progress": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "app:build:production"
+            },
+            "development": {
+              "buildTarget": "app:build:development"
+            },
+            "ci": {
+              "progress": false
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n",
+          "options": {
+            "buildTarget": "app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "buildTarget": "::development",
+            "setupFiles": ["src/test-setup.ts"]
+          },
+          "configurations": {
+            "ci": {
+              "watch": false
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "schematicCollections": ["@ionic/angular-toolkit"]
+  },
+  "schematics": {
+    "@ionic/angular-toolkit:component": {
+      "styleext": "scss",
+      "standalone": true
+    },
+    "@ionic/angular-toolkit:page": {
+      "styleext": "scss",
+      "standalone": true
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
+    }
+  }
+}
+</file>
+
+<file path="Arena-cup/capacitor.config.ts">
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'io.ionic.starter',
+  appName: 'Arena-cup',
+  webDir: 'www'
+};
+
+export default config;
+</file>
+
+<file path="Arena-cup/eslint.config.js">
+// @ts-check
+const tseslint = require("typescript-eslint");
+const angular = require("angular-eslint");
+
+module.exports = tseslint.config(
+  {
+    files: ["**/*.ts"],
+    ignores: ["projects/**/*"],
+    extends: [...angular.configs.tsRecommended],
+    processor: angular.processInlineTemplates,
+    rules: {
+      "@angular-eslint/component-class-suffix": [
+        "error",
+        { suffixes: ["Page", "Component"] },
+      ],
+      "@angular-eslint/component-selector": [
+        "error",
+        { type: "element", prefix: "app", style: "kebab-case" },
+      ],
+      "@angular-eslint/directive-selector": [
+        "error",
+        { type: "attribute", prefix: "app", style: "camelCase" },
+      ],
+    },
+  },
+  {
+    files: ["**/*.html"],
+    extends: [...angular.configs.templateRecommended],
+    rules: {},
+  }
+);
+</file>
+
+<file path="Arena-cup/ionic.config.json">
+{
+  "name": "Arena-cup",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
+</file>
+
+<file path="Arena-cup/package.json">
+{
+  "name": "Arena-cup",
+  "version": "0.0.1",
+  "author": "Ionic Framework",
+  "homepage": "https://ionicframework.com/",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "22.1.7",
+    "@angular/compiler": "22.1.7",
+    "@angular/core": "22.1.7",
+    "@angular/fire": "^20.1.1",
+    "@angular/forms": "22.1.7",
+    "@angular/platform-browser": "22.1.7",
+    "@angular/router": "^22.1.7",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/haptics": "8.0.2",
+    "@capacitor/keyboard": "8.0.6",
+    "@capacitor/status-bar": "8.0.4",
+    "@ionic/angular": "^9.0.7",
+    "firebase": "^13.0.0",
+    "firebase-tools": "^15.33.0",
+    "ionicons": "^8.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "22.1.8",
+    "@angular/cli": "22.1.8",
+    "@angular/compiler-cli": "22.1.7",
+    "@angular/language-service": "22.1.7",
+    "@capacitor/cli": "8.5.3",
+    "@ionic/angular-toolkit": "^13.0.0",
+    "angular-eslint": "22.5.0",
+    "eslint": "^10.10.0",
+    "jsdom": "^30.1.1",
+    "typescript": "~6.0.0",
+    "typescript-eslint": "^8.61.0",
+    "vitest": "~4.0.18"
+  },
+  "description": "An Ionic project"
+}
+</file>
+
+<file path="Arena-cup/tsconfig.app.json">
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "files": [
+    "src/main.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ]
+}
+</file>
+
+<file path="Arena-cup/tsconfig.json">
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "es2020",
+    "lib": ["es2022", "dom"],
+    "skipLibCheck": true,
+    "useDefineForClassFields": false
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}
+</file>
+
+<file path="Arena-cup/tsconfig.spec.json">
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "types": [
+      "vitest/globals"
+    ]
+  },
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts",
+    "src/test-setup.ts"
+  ]
+}
+</file>
+
+<file path="prints.css">
+/* Telefone fake — estilo print de aula */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #e2e8f0;
+  color: #0f172a;
+  padding: 24px 16px 48px;
+}
+.topo {
+  max-width: 920px; margin: 0 auto 18px;
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline;
+}
+.topo h1 { font-size: 1.15rem; margin-right: auto; }
+.topo span { font-size: 0.85rem; color: #64748b; }
+.grid {
+  max-width: 920px; margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: 22px; justify-content: center;
+}
+.bloco { width: 300px; }
+.bloco h2 {
+  font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: #64748b; margin-bottom: 8px; text-align: center;
+}
+.fone {
+  border-radius: 28px; overflow: hidden;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.18);
+  border: 3px solid #cbd5e1; background: #fff; min-height: 520px;
+}
+.tb {
+  padding: 14px 12px; color: #fff; font-weight: 700; font-size: 0.95rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.pad { padding: 12px; }
+.item {
+  background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
+  padding: 10px 12px; margin-bottom: 8px;
+  display: flex; justify-content: space-between; gap: 8px; align-items: center;
+}
+.item strong { font-size: 0.92rem; }
+.item .preco { font-weight: 700; white-space: nowrap; }
+.badge {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  padding: 2px 7px; border-radius: 999px; margin-top: 4px;
+}
+.badge.ok { background: #dcfce7; color: #166534; }
+.badge.warn { background: #fef3c7; color: #92400e; }
+.badge.bad { background: #fee2e2; color: #991b1b; }
+.badge.off { background: #e2e8f0; color: #64748b; }
+.btn {
+  display: block; width: 100%; text-align: center; padding: 12px;
+  border-radius: 12px; font-weight: 700; border: 0; margin-top: 10px;
+  color: #fff; font-size: 0.95rem;
+}
+.btn.ghost { background: #e2e8f0; color: #475569; }
+.aviso {
+  border-radius: 10px; padding: 10px 12px; font-size: 0.85rem;
+  margin: 8px 0; font-weight: 600;
+}
+.aviso.erro { background: #fee2e2; color: #991b1b; }
+.aviso.info { background: #e0f2fe; color: #075985; }
+.total {
+  margin-top: 12px; padding-top: 10px; border-top: 1px dashed #cbd5e1;
+  font-size: 0.92rem;
+}
+.total .linha { display: flex; justify-content: space-between; margin: 4px 0; }
+.total .g { font-size: 1.05rem; font-weight: 800; }
+.muted { color: #64748b; font-size: 0.8rem; }
+.chip {
+  display: inline-block; padding: 6px 10px; border-radius: 999px;
+  background: #f1f5f9; font-size: 0.78rem; margin: 0 4px 6px 0; font-weight: 600;
+}
+.chip.on { background: #0f766e; color: #fff; }
+.nota {
+  max-width: 920px; margin: 20px auto 0; font-size: 0.88rem; color: #475569;
+  background: #fff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px 14px;
+}
+.nota strong { color: #0f172a; }
+</file>
+
+<file path="PRINTS.html">
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print Â· Arena Cup</title>
+<link rel="stylesheet" href="./prints.css">
+<style>.tb{background:#5b21b6}.btn.main{background:#5b21b6}</style>
+</head>
+<body>
+<div class="topo"><h1>Arena Cup</h1><span>Olhe as telas. Monte parecido.</span></div>
+<div class="grid">
+  <div class="bloco">
+    <h2>1 Â· Modalidades</h2>
+    <div class="fone">
+      <div class="tb"><span>Arena Cup</span><span style="font-weight:600;font-size:0.8rem;">sair</span></div>
+      <div class="pad">
+        <div class="item"><div><strong>FIFA 1x1</strong><div class="muted">8 vagas Â· R$ 5</div></div><button class="btn main" style="width:auto;padding:6px 10px;margin:0;font-size:0.75rem;">Inscrever</button></div>
+        <div class="item"><div><strong>Valorant interno</strong><div class="muted">10 vagas Â· R$ 10</div></div><button class="btn main" style="width:auto;padding:6px 10px;margin:0;font-size:0.75rem;">Inscrever</button></div>
+        <div class="item"><div><strong>Xadrez blitz</strong><div class="muted">16 vagas Â· grÃ¡tis</div></div><button class="btn main" style="width:auto;padding:6px 10px;margin:0;font-size:0.75rem;">Inscrever</button></div>
+        <div class="item"><div><strong>Just Dance</strong><div class="muted">6 vagas Â· R$ 5</div></div><button class="btn main" style="width:auto;padding:6px 10px;margin:0;font-size:0.75rem;">Inscrever</button></div>
+        <div class="item"><div><strong>Super Smash</strong><div><span class="badge bad">lotado</span></div></div><button class="btn ghost" style="width:auto;padding:6px 10px;margin:0;font-size:0.75rem;">â€”</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="bloco">
+    <h2>2 Â· Depois de 1 inscrição</h2>
+    <div class="fone">
+      <div class="tb"><span>Arena Cup</span><span style="font-weight:600;font-size:0.8rem;">sair</span></div>
+      <div class="pad">
+        <div class="aviso info">inscrição salva</div>
+        <div class="item"><div><strong>FIFA 1x1</strong><div class="muted">7 vagas Â· R$ 5</div></div><button class="btn main" style="width:auto;padding:6px 10px;margin:0;font-size:0.75rem;">Inscrever</button></div>
+        <p class="muted" style="margin-top:12px;">Vagas diminuem na tela. Lotado nÃ£o inscreve.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+</file>
+
+<file path="INICIO.md">
+# liga-arena-cup
+
+Liga Ionic INFO-24
+
+1. Abra `PRINTS.html` (gabarito visual)
+2. Leia `MISSAO.md`
+3. Node **22.23.1** + Ionic **9**
+4. Issues da **semana liberada**
+5. Codigo no **seu fork**
+
+Nao commit `node_modules`.
+</file>
+
+<file path="MISSAO.md">
+# Arena Cup
+
+## O que fazer
+1. Abra **`PRINTS.html`** neste repo (é o gabarito visual).
+2. Monte o app **parecido com o print** (não precisa ser idêntico).
+3. A regra do tema está **nas telas do print** — observe totais, badges e mensagens.
+4. Cada semana o professor libera issues novas. Faça só as da semana aberta.
+
+## Stack
+Node **22.23.1** · Ionic **9** standalone · Firebase de vocês
+
+## Entrega
+Link do seu **fork** + demo: login → lista → regra do print → Firestore
+</file>
+
+</files>

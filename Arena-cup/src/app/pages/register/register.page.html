@@ -1,0 +1,35 @@
+<ion-content class="auth-content" [fullscreen]="true">
+  <div class="auth-container">
+
+    <div class="auth-header">
+      <h1>Crie sua conta</h1>
+      <p>Preencha os dados para começar</p>
+    </div>
+
+    <div class="auth-form">
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="email" type="email" label="E-mail" labelPlacement="stacked" placeholder="seu@email.com"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="password" type="password" label="Senha" labelPlacement="stacked" placeholder="Mínimo de 6 caracteres"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="auth-actions">
+      <ion-button expand="block" (click)="onRegister()">Cadastrar</ion-button>
+
+      <div class="auth-divider">ou</div>
+
+      <ion-button expand="block" class="btn-google" (click)="onGoogleLogin()">
+        <ion-icon name="logo-google" slot="start"></ion-icon>
+        Cadastrar com Google
+      </ion-button>
+    </div>
+
+    <div class="auth-footer">
+      Já possui uma conta? <a routerLink="/login">Faça login</a>
+    </div>
+
+  </div>
+</ion-content>

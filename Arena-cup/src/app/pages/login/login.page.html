@@ -1,0 +1,35 @@
+<ion-content class="auth-content" [fullscreen]="true">
+  <div class="auth-container">
+
+    <div class="auth-header">
+      <h1>Bem-vindo!</h1>
+      <p>Acesse sua conta para continuar</p>
+    </div>
+
+    <div class="auth-form">
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="email" type="email" label="E-mail" labelPlacement="stacked" placeholder="seu@email.com"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="password" type="password" label="Senha" labelPlacement="stacked" placeholder="Sua senha"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="auth-actions">
+      <ion-button expand="block" (click)="onLogin()">Entrar</ion-button>
+
+      <div class="auth-divider">ou</div>
+
+      <ion-button expand="block" class="btn-google" (click)="onGoogleLogin()">
+        <ion-icon name="logo-google" slot="start"></ion-icon>
+        Continuar com Google
+      </ion-button>
+    </div>
+
+    <div class="auth-footer">
+      Não tem uma conta? <a routerLink="/register">Cadastre-se</a>
+    </div>
+
+  </div>
+</ion-content>

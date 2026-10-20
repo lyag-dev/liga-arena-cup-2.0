@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Arena Cup 🌸</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="sair()" style="font-size: 0.8rem; font-weight: 600;">sair</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  @if (mensagemInscricao) {
+    <div class="aviso-sucesso">
+       {{ mensagemInscricao }}
+    </div>
+  }
+
+  @for (m of modalidades; track m.id) {
+    <div class="card-modalidade">
+      <div>
+        <strong>{{ m.nome }}</strong>
+
+        @if (!m.lotado) {
+          <div class="detalhes">
+            {{ m.vagas }} vagas · {{ m.preco === 0 ? 'grátis ' : 'R$ ' + m.preco }}
+          </div>
+        }
+
+        <div>
+          @if (m.lotado) {
+            <span class="badge-lotado">lotado </span>
+          }
+        </div>
+      </div>
+
+      <div>
+        @if (!m.lotado) {
+          <ion-button
+            size="small"
+            class="btn-inscrever"
+            (click)="realizarInscricao(m)">
+            Inscrever
+          </ion-button>
+        } @else {
+          <ion-button
+            size="small"
+            disabled="true"
+            class="btn-lotado">
+            —
+          </ion-button>
+        }
+      </div>
+    </div>
+  }
+
+  <div class="rodape-info">
+    <div>Total de vagas disponíveis: <strong>{{ totalVagas }}</strong></div>
+  </div>
+</ion-content>

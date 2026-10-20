@@ -1,0 +1,127 @@
+$auth-padding: 24px;
+$auth-border-radius: 12px;
+$auth-transition: all 0.3s ease;
+
+.auth-content {
+  --background: var(--ion-background-color, #f4f5f8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-container {
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  padding: $auth-padding;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+
+  /* Cabeçalho (Título e Subtítulo) */
+  .auth-header {
+    text-align: center;
+    margin-bottom: 32px;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ion-text-color, #222);
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      color: var(--ion-color-medium, #666);
+    }
+  }
+
+  /* Campos do Formulário */
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+
+    ion-item {
+      --border-radius: #{$auth-border-radius};
+      --background: var(--ion-item-background, #fff);
+      --padding-start: 16px;
+      --padding-end: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border-radius: $auth-border-radius;
+      transition: $auth-transition;
+
+      &:focus-within {
+        box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb, 56, 128, 255), 0.2);
+      }
+    }
+  }
+
+  /* Botões de Ação */
+  .auth-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    ion-button {
+      --border-radius: #{$auth-border-radius};
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: none;
+      height: 48px;
+    }
+
+    .btn-google {
+      --background: #ffffff;
+      --color: #333333;
+      --border-color: #e0e0e0;
+      --border-width: 1px;
+      --border-style: solid;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+      ion-icon {
+        margin-right: 8px;
+        color: #db4437; /* Cor oficial do Google */
+      }
+    }
+  }
+
+  /* Divisor "OU" */
+  .auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 16px 0;
+    color: var(--ion-color-medium, #888);
+    font-size: 13px;
+
+    &::before, &::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--ion-color-step-200, #e0e0e0);
+    }
+
+    &::before { margin-right: .75em; }
+    &::after { margin-left: .75em; }
+  }
+
+  /* Link para alternar entre Login e Cadastro */
+  .auth-footer {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    color: var(--ion-color-medium, #666);
+
+    a {
+      color: var(--ion-color-primary, #3880ff);
+      text-decoration: none;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
