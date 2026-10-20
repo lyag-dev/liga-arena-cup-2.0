@@ -1,0 +1,35 @@
+<div class="card-modalidade">
+  <div>
+    <strong>{{ modalidade.nome }}</strong>
+
+    @if (!modalidade.lotado) {
+      <div class="detalhes">
+        {{ modalidade.vagas }} vagas · {{ modalidade.preco === 0 ? 'grátis' : 'R$ ' + modalidade.preco }}
+      </div>
+    }
+
+    <div>
+      @if (modalidade.lotado) {
+        <span class="badge-lotado">lotado</span>
+      }
+    </div>
+  </div>
+
+  <div>
+    @if (!modalidade.lotado) {
+      <ion-button
+        size="small"
+        class="btn-inscrever"
+        (click)="onClicarInscrever()">
+        Inscrever
+      </ion-button>
+    } @else {
+      <ion-button
+        size="small"
+        disabled="true"
+        class="btn-lotado">
+        —
+      </ion-button>
+    }
+  </div>
+</div>

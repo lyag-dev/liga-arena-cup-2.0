@@ -1,4 +1,3 @@
-
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -9,6 +8,7 @@ import { Modalidade } from '../../models/modalidade.model';
 import { ModalidadeService } from '../../core/services/services/modalidade.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { ModalidadeCardComponent } from '../../components/modalidade-card/modalidade-card.component';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,8 @@ import { AuthService } from '../../core/services/auth.service';
   imports: [
     CommonModule,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonButton, IonButtons
+    IonButton, IonButtons,
+    ModalidadeCardComponent
   ],
 })
 export class HomePage {
