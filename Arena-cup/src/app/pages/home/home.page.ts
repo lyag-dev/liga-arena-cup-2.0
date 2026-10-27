@@ -40,8 +40,8 @@ export class HomePage {
     this.totalVagas = this.modalidadeService.getTotalVagasDisponiveis();
   }
 
-  realizarInscricao(modalidade: Modalidade) {
-    const resultado = this.modalidadeService.inscrever(modalidade);
+  async realizarInscricao(modalidade: Modalidade) {
+    const resultado = await this.modalidadeService.inscrever(modalidade);
     this.mensagemInscricao = resultado.mensagem;
     this.atualizarDados();
   }
